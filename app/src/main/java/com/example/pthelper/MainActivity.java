@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*Hello*/
         setContentView(R.layout.activity_main);
 
         username_et = (EditText)findViewById(R.id.username_et);
