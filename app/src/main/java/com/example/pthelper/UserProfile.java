@@ -43,31 +43,40 @@ public class UserProfile extends AppCompatActivity {
         edit_button4 = (ImageButton)findViewById(R.id.edit_button4);
         edit_button5 = (ImageButton)findViewById(R.id.edit_button5);
 
-        viewUserData();
-        //username_tv.setText(viewUserData());
-        /*gender_tv.setText(userData[0]);
-        age_tv.setText(userData[0]);
-        height_tv.setText(userData[0]);
-        weight_tv.setText(userData[0]);*/
-
+        //Set the text view elements to show user data
+        String[] ret = viewUserData();
+        if(ret[0] != null)
+        username_tv.setText(ret[0]);
+        if(ret[1] != null)
+        gender_tv.setText(ret[1]);
+        if(ret[2] != null)
+        age_tv.setText(ret[2]);
+        if(ret[3] != null)
+        height_tv.setText(ret[3]);
+        if(ret[4] != null)
+        weight_tv.setText(ret[4]);
     }
 
 
-    public void viewUserData() {
-
+    //Query database for user info to display to the user profile page
+    public String[] viewUserData() {
         Cursor res = myDB.getUser();
-        if (res.getCount() == 0){
-            return ;
+        String username, gender, age, height, weight ;
+        String[] ret = new String[5];
+        int i = 0;
+        if (res.moveToFirst()) {
+            username = res.getString(res.getColumnIndex("username"));
+            ret[0] = username;
+            gender = res.getString(res.getColumnIndex("gender"));
+            ret[1] = gender;
+            age = res.getString(res.getColumnIndex("age"));
+            ret[2] = age;
+            height = res.getString(res.getColumnIndex("height"));
+            ret[3] = height;
+            weight = res.getString(res.getColumnIndex("weight"));
+            ret[4] = weight;
         }
-        /*String[] data= new String[] {
-                res.getString(res.getColumnIndex("username")),
-                res.getString(res.getColumnIndex("gender")),
-                res.getString(res.getColumnIndex("age")),
-                res.getString(res.getColumnIndex("height")),
-                res.getString(res.getColumnIndex("weight"))
-        };*/
-        Log.e("SQL", res.getString(0));
-        return ;
+        return ret;
 
     }
 }

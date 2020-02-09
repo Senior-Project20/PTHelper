@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getUser() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select username from " + UserInfo.TABLE_NAME + " where username = ?", new String[] {"Tom"});
+        Cursor res = db.rawQuery("select * from " + UserInfo.TABLE_NAME + " where username = ?", new String[] {"joe"});
         return res;
     }
 }
